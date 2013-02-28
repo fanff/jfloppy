@@ -1,0 +1,17 @@
+import java.util.concurrent.Executor
+import fr.irit.smac.may.lib.interfaces.*
+import fr.irit.smac.may.lib.components.messaging.receiver.*
+import fr.irit.smac.may.lib.components.controlflow.*
+
+import fr.irit.smac.may.serial.iface.*
+
+import fr.irit.smac.may.serial.*
+
+import java.util.*
+import java.lang.*
+
+import midi.iface.*
+
+namespace floppy {
+	
+}

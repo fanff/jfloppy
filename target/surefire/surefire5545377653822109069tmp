@@ -1,0 +1,6 @@
+#surefire
+#Sat Feb 18 15:32:34 CET 2012
+java.library.path=target/classes/native/
+user.dir=/dev/shm/ramfs/workSpace/testComm
+localRepository=/home/fanfan/.m2/repository
+basedir=/dev/shm/ramfs/workSpace/testComm

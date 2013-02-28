@@ -1,0 +1,19 @@
+Archive created by -=MIRSOFT=-
+Look for game MIDs at http://go.to/gamemids
+
+*** Archive info ***
+Archiver: Mirsoft
+Type: Converted
+Format: MID
+Original Composer: Frank Klepacki
+Sequencer: Frank Klepacki
+Num of tunes: 8
+Complete: 50%
+
+*** Game info ***
+Name: Command & Conquer
+Platform: PC
+Year: 1995
+Genre: RTS
+Publisher: Virgin
+Developer: Westwood

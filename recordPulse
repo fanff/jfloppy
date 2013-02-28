@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+WAV="$1"
+if [ -z "$WAV" ]; then
+    echo "Usage: $0 OUTPUT.WAV" >&2
+    exit 1
+fi
+rm -f "$WAV"
+
+# Get sink monitor:
+#MONITOR=$(pactl list | egrep -A2 '^(\*\*\* )?Source #' | \
+#    grep 'Name: .*\.monitor$' | awk '{print $NF}' | tail -n1)
+#echo "set-source-mute ${MONITOR} false" | pacmd >/dev/null
+MONITOR="alsa_input.usb-0d8c_PnP_Audio_Device-00-Device.analog-stereo"
+
+
+# Record it raw, and convert to a wav
+echo "Monitor is  $MONITOR ..."
+echo "Recording to $WAV ..."
+echo "Close this window to stop"
+parec -d "$MONITOR" --raw --channels=1 | sox -t raw -r 44k -sLb 16 -c 1 - "$WAV"
+

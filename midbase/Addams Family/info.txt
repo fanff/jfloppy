@@ -1,0 +1,19 @@
+Archive created by -=MIRSOFT=-
+Look for game MIDs at http://go.to/gamemids
+
+*** Archive info ***
+Archiver: Mirsoft
+Type: Arranged
+Format: MID
+Original Composer: 
+Sequencer: 
+Num of tunes: 1
+Complete: 
+
+*** Game info ***
+Name: Addams Family
+Platform: SNES
+Year: 1992
+Genre: Jump'n'Run
+Publisher: Ocean
+Developer: Ocean

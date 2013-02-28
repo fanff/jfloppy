@@ -1,0 +1,22 @@
+Archive created by chupacabra
+Look for game MIDs at http://www.mirsoft.info/
+
+*** Archive info ***
+Archiver: chupacabra
+Type: Game rip
+Format: MID (GM, AWE)
+Original Composer:  Rob King
+Sequencer: Rob King
+Num of tunes: 17
+Complete: 100%
+
+*** Game info ***
+Name: Heroes of Might & Magic 2
+Platform: PC
+Year: 1996
+Genre: Strategy
+Publisher: 3DO
+Developer: New World Computing
+
+*** Additional info ***
+Ripped directly from game file (data/heroes2.agg) using freeware program called "Extractor". Got 17 .xmi files. Converted them to .mid using another free program "xmi2mid". Enjoy!

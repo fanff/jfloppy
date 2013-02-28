@@ -1,0 +1,22 @@
+import java.util.concurrent.Executor
+import fr.irit.smac.may.lib.interfaces.*
+import fr.irit.smac.may.lib.components.messaging.receiver.*
+import fr.irit.smac.may.lib.components.controlflow.*
+
+import fr.irit.smac.may.serial.iface.*
+
+import java.util.*
+import java.lang.*
+
+namespace fr.irit.smac.may.serial {
+	
+	component SerialPortComp{
+
+		provides statusPort : SerialPortStatus
+		provides sendingPort : SendPort
+		
+	}
+
+
+
+}
