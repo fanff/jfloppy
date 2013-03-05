@@ -24,20 +24,9 @@ struct Frame {
 
 //utility variable for serial transmission
  int inFloppyID = 0;
- unsigned int inframeend = 0;
  unsigned int inframehalfperiod = 0;
- unsigned int inframeendH = 0;
- unsigned int inframeendL = 0;
  unsigned int durationheavy = 0;
  unsigned int durationLight = 0;
-//FRAME MANAGEMENT VARIABLES
-
- int frameplayP[FLOPPY_COUNT] ;
- int frameHeadP[FLOPPY_COUNT] ;
-
- Frame frameList[FLOPPY_COUNT][MAXFRAMECOUNT];
-
- unsigned int currentframestep = 0;
 
 // lower engine variables
 
@@ -54,6 +43,8 @@ struct Frame {
 
  byte direction[FLOPPY_COUNT]  ;
  unsigned int pos[FLOPPY_COUNT]  ;
+ 
+ 
 /****
 BASIC INIT FUNCTION
 
@@ -185,62 +176,6 @@ LOWLEVEL void checkFloppy(byte drived,unsigned int counterIncrement){
   }
 }
 
-
-
-/**********************
-
-FRAME MANAGEMENT AREA
-
-
-
-***********************/
-//update the played frame
-LOWLEVEL void updatePlayedFrame(byte floppydrived){
-  //TODO do the update only if the currentframestep has changed from this floppy POV
-  
-  
-  // if current played frame ending point reached
-  if( frameList[floppydrived][frameplayP[floppydrived]].frameend < currentframestep){
-    
-    //is there a next frame ?
-    int nextFrameP = (frameplayP[floppydrived]+1) % MAXFRAMECOUNT;
-    
-    //if end time of nextFrame is greated than endtime of currentFrame
-    if(frameList[floppydrived][nextFrameP].frameend > frameList[floppydrived][frameplayP[floppydrived]].frameend){
-      //go to the next Frame
-      frameplayP[floppydrived] = nextFrameP;
-      //and play it
-      halfPeriod[floppydrived] = frameList[floppydrived][frameplayP[floppydrived]].framehalfperiod;
-    }else{
-      
-      //play the current Frame
-      halfPeriod[floppydrived] = frameList[floppydrived][frameplayP[floppydrived]].framehalfperiod;
-    }
-  }else{
-      
-      //play the current Frame
-      halfPeriod[floppydrived] = frameList[floppydrived][frameplayP[floppydrived]].framehalfperiod;
-    }
-}
-
-/**
-append the frame to the head of the list
-*/
-LOWLEVEL void addFrameTo(byte floppyID,unsigned int frameEND,unsigned int frameHP){
-  int currentHead = frameHeadP[floppyID] ;
-
-  int nextHead = (currentHead+1) % MAXFRAMECOUNT;
-  
-  frameList[floppyID][nextHead].frameend = frameEND;
-  frameList[floppyID][nextHead].framehalfperiod = frameHP;
-  
-  frameHeadP[floppyID] = nextHead;
-}
-
-
-
-
-
 /****************************
 
       SETUP
@@ -258,8 +193,6 @@ void setup(){
   
   for(int drived =  0; drived < FLOPPY_COUNT ; ++drived){
     //initiating all those array to 00000000;
-    frameplayP[drived] = 0;
-    frameHeadP[drived] = 0;
     halfPeriod[drived] = 0;
     floppyNextStop[drived] = 0 ;
     floppyCounter[drived] = 0;
@@ -284,12 +217,6 @@ void setup(){
     for(int i = 0;i<20;i++){
       doStep(drived);
     }
-  }
-  
-  //initiate the frame List
-  for(int fid = 0 ; fid <FLOPPY_COUNT ; ++fid){
-    frameList[fid][0].frameend = 0;
-    frameList[fid][0].framehalfperiod = 0;
   }
   
   //set timer1 counter (16bits)
@@ -339,7 +266,7 @@ void loop(){
     //check if I should update floppy output
     checkFloppy(floppydrived, counterValue);
   }
-  
+
   //now checking if data to read, 
   if (Serial.available() >= 3) {
     // get incoming Frame:
