@@ -50,7 +50,7 @@ public class Playwav {
 			osc.amplitude.set( 1. );
 			//osc.phase.set(1.);
 			for(int i = 0 ; i< 100000000 ; i++){
-				osc.frequency.set( randombetween(400, 500));
+				osc.frequency.set( 330);
 				// Sleep while the sound is generated in the background.
 				// Sleep for a few seconds.
 				//synth.sleepUntil( synth.getCurrentTime() + 0.01 );

@@ -60,7 +60,7 @@ public class MainTestFFT {
 			//mtt.addValueInSecureThread(i, summed[i], "sum", 2000);
 		}
 		
-		
+		System.out.println("summed size"+summed.length);
 		double[] absoluteSpectrogram ;
 		// for each frame in signals, do fft on it
 		FastFourierTransform fft = new FastFourierTransform();
