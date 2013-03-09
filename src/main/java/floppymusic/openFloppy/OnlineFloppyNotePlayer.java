@@ -124,7 +124,6 @@ public class OnlineFloppyNotePlayer {
 			System.out.println("floppy say->"+lineReceived);
 		}
 		
-		//si la lignes est "s" alors faire des trucs
 	}
 	public void muteAllFloppy(){
 		for(int i = 0 ; i < floppyCount ; i++){

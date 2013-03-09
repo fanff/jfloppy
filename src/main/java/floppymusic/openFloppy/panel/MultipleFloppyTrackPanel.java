@@ -1,9 +1,13 @@
-package floppymusic.openFloppy.utils;
+package floppymusic.openFloppy.panel;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+
+import floppymusic.openFloppy.utils.FloppyFrame;
+import floppymusic.openFloppy.utils.FloppyTrack;
+import floppymusic.openFloppy.utils.SetOfFloppyTrack;
 
 public class MultipleFloppyTrackPanel extends JPanel{
 	SetOfFloppyTrack alltracks = null;

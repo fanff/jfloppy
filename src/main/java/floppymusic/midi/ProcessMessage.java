@@ -1,4 +1,4 @@
-package floppymusic.openFloppy;
+package floppymusic.midi;
 
 import floppymusic.openFloppy.testingPrograms.OnlineFloppyControlTester;
 

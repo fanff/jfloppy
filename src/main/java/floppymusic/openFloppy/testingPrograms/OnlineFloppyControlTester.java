@@ -23,7 +23,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingUtilities;
 
 import panel.agentGossip.FeedPanel;
-import floppymusic.openFloppy.ProcessMessage;
+import floppymusic.midi.ProcessMessage;
 import fr.irit.smac.may.serial.SerialPortComp;
 import fr.irit.smac.may.serial.WaitFor;
 import fr.irit.smac.may.serial.iface.SendPort;

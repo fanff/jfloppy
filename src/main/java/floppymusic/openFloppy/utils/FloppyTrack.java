@@ -16,6 +16,11 @@ import fr.irit.smac.may.lib.components.meta.CollectionInteger;
 
 public class FloppyTrack implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8273409707532183948L;
+
 	//Map<Integer,Integer> allFreqs = new TreeMap<Integer,Integer>();
 	Integer [] allFreqs = new Integer[500000];
 	

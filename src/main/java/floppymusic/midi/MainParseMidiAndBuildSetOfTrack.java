@@ -9,11 +9,9 @@ import java.util.Set;
 import javax.sound.midi.Sequence;
 import javax.swing.JFrame;
 
-import floppymusic.openFloppy.FloppyMusicPlayer;
-import floppymusic.openFloppy.OnlineFloppyNotePlayer;
+import floppymusic.openFloppy.panel.MultipleFloppyTrackPanel;
 import floppymusic.openFloppy.utils.FloppyFrame;
 import floppymusic.openFloppy.utils.FloppyTrack;
-import floppymusic.openFloppy.utils.MultipleFloppyTrackPanel;
 import floppymusic.openFloppy.utils.SetOfFloppyTrack;
 
 public class MainParseMidiAndBuildSetOfTrack {

@@ -1,10 +1,13 @@
-package floppymusic.openFloppy.utils;
+package floppymusic.openFloppy.panel;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import floppymusic.openFloppy.utils.FloppyFrame;
+import floppymusic.openFloppy.utils.FloppyTrack;
 
 public class FloppyTrackPanel extends JPanel {
 	

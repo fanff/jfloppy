@@ -6,7 +6,7 @@ import javax.sound.midi.Sequence;
 import javax.swing.JFrame;
 
 import floppymusic.midi.MidiParser;
-import floppymusic.openFloppy.utils.MultipleFloppyTrackPanel;
+import floppymusic.openFloppy.panel.MultipleFloppyTrackPanel;
 import floppymusic.openFloppy.utils.SetOfFloppyTrack;
 import floppymusic.openFloppy.utils.SetOfMidiNotes;
 import floppymusic.openFloppy.utils.TrackBuilder;

@@ -5,9 +5,9 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import floppymusic.openFloppy.panel.FloppyTrackPanel;
 import floppymusic.openFloppy.utils.FloppyFrame;
 import floppymusic.openFloppy.utils.FloppyTrack;
-import floppymusic.openFloppy.utils.FloppyTrackPanel;
 
 
 public class Main_RandomTrack {

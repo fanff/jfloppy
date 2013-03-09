@@ -15,13 +15,13 @@ import wav.ShowSpectro;
 
 import com.musicg.dsp.FastFourierTransform;
 
-public class CaptureAudio {
+public class CaptureAudioAndPlotSpectrum {
 
 	FastFourierTransform fft = new FastFourierTransform();
 
 	ShowSpectro showSpectro = new ShowSpectro();
 	
-	public CaptureAudio() {
+	public CaptureAudioAndPlotSpectrum() {
 		super();
 		JFrame f = new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,7 +140,7 @@ public class CaptureAudio {
 	 * @throws LineUnavailableException 
 	 */
 	public static void main(String[] args) throws Exception {
-		CaptureAudio ca = new CaptureAudio();
+		CaptureAudioAndPlotSpectrum ca = new CaptureAudioAndPlotSpectrum();
 		ca.capture();
 
 	}
