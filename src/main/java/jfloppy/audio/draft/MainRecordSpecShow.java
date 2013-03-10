@@ -1,9 +1,7 @@
-package wav.mains;
+package jfloppy.audio.draft;
 
-import wav.FusionSpectrum;
-import wav.LoadSpectrum;
-import wav.SaveWaveWitPulse;
-import wav.ShowSpectro;
+import jfloppy.audio.SpectroPanel;
+
 
 public class MainRecordSpecShow {
 
@@ -20,7 +18,7 @@ public class MainRecordSpecShow {
 		int overlap = 0;
 		LoadSpectrum loadSpectrum = new LoadSpectrum(fileName, spectrumFrameSize, overlap);
 		
-		ShowSpectro spectrumShow = new ShowSpectro();
+		SpectroPanel spectrumShow = new SpectroPanel();
 		
 		FusionSpectrum fusion = new FusionSpectrum() {
 			
@@ -73,7 +71,7 @@ public class MainRecordSpecShow {
 			}
 		};
 		
-		SaveWaveWitPulse.save(fileName, durationMS);
+		SaveWaveWitPulseAudioLinux.save(fileName, durationMS);
 		
 		double [][] spectrum = loadSpectrum.getSpectrum();
 

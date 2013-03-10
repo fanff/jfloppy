@@ -1,11 +1,9 @@
-package wav.mains;
+package jfloppy.audio.draft;
 
 import java.util.Arrays;
 
-import wav.FusionSpectrum;
-import wav.LoadSpectrum;
-import wav.SaveWaveWitPulse;
-import wav.ShowSpectro;
+import jfloppy.audio.SpectroPanel;
+
 
 public class MainLoadSpecShow {
 public static void main(String[] args) throws InterruptedException {
@@ -16,7 +14,7 @@ public static void main(String[] args) throws InterruptedException {
 		int overlap = 0;
 		LoadSpectrum loadSpectrum = new LoadSpectrum(fileName, spectrumFrameSize, overlap);
 		
-		ShowSpectro spectrumShow = new ShowSpectro();
+		SpectroPanel spectrumShow = new SpectroPanel();
 		
 		FusionSpectrum fusion = new FusionSpectrum() {
 			

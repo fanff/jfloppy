@@ -1,8 +1,8 @@
-package wav;
+package jfloppy.audio.draft;
 
 import java.io.IOException;
 
-public class SaveWaveWitPulse {
+public class SaveWaveWitPulseAudioLinux {
 
 	/**
 	 * @param args

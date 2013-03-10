@@ -1,4 +1,4 @@
-package wav;
+package jfloppy.audio.draft;
 
 import com.musicg.wave.Wave;
 import com.musicg.wave.extension.Spectrogram;

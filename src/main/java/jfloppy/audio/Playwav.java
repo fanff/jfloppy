@@ -1,4 +1,4 @@
-package wav.mains;
+package jfloppy.audio;
 
 import java.util.Random;
 

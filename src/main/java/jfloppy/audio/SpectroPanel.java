@@ -1,13 +1,13 @@
-package wav;
+package jfloppy.audio;
 import java.awt.Graphics;
 import java.util.Arrays;
 
 import javax.swing.JPanel;
-public class ShowSpectro extends JPanel{
+public class SpectroPanel extends JPanel{
 
 	double [] tempspectro = new double[0];
 	
-	public ShowSpectro() {
+	public SpectroPanel() {
 		super();
 	}
 

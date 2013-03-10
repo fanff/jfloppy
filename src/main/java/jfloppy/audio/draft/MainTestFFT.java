@@ -1,14 +1,15 @@
-package wav.mains;
+package jfloppy.audio.draft;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import jfloppy.audio.JFloppyAudioTB;
+
 import com.musicg.dsp.FastFourierTransform;
 
 import panel.MultipleTimeTrace;
-import wav.GenerateWave;
 
 public class MainTestFFT {
 
@@ -46,7 +47,7 @@ public class MainTestFFT {
 		
 		for(int freqid = 0; freqid < generatedCount ;freqid+= 1){
 			int freq = freqsToGenerate[freqid];
-			double[] wave = GenerateWave.square(44000, freq, sampleSize);
+			double[] wave = JFloppyAudioTB.square(44000, freq, sampleSize);
 			
 			generated[freqid]=wave;
 			
@@ -55,7 +56,7 @@ public class MainTestFFT {
 			}
 		}
 
-		double[] summed = GenerateWave.sum(generated);
+		double[] summed = JFloppyAudioTB.sum(generated);
 		for(int i=0; i < summed.length ; i ++){
 			//mtt.addValueInSecureThread(i, summed[i], "sum", 2000);
 		}

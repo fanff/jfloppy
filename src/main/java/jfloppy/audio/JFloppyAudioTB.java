@@ -1,10 +1,12 @@
-package wav;
+package jfloppy.audio;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
-public class GenerateWave {
+import javax.sound.sampled.AudioFormat;
+
+public class JFloppyAudioTB {
 
 	
 	public static double[] square(int fre,int freq, int sampleSize){
@@ -86,11 +88,23 @@ public class GenerateWave {
 		
 		return result;
 	}
+	public static int minID(double[] in){
+		int result = 0;
+		double min = Double.MAX_VALUE;
+		for(int i = 0;i<in.length;i++){
+			if(in[i] <= min){
+				result=i;
+				min = in[i];
+			}
+		}
+		
+		return result;
+	}
 	
 	
 	public static double[] normalize(double[] in){
 		double[] result = new double[in.length];
-		int maxid = GenerateWave.maxID(in);
+		int maxid = JFloppyAudioTB.maxID(in);
 		double maxValue = in[maxid];
 		for(int i = 0;i<in.length;i++){
 			result[i] = in[i]/maxValue;
@@ -100,16 +114,48 @@ public class GenerateWave {
 	}
 	
 	
-	public static short[] byte2short(byte[] byteArray){
-		short[] result = new short[byteArray.length/2];
-		ByteBuffer bb = ByteBuffer.wrap(byteArray);
-		ShortBuffer ib = bb.asShortBuffer();
-
-		for(int iter = 0 ; iter<byteArray.length/2  ;   iter++){
-			result[iter] = ib.get(iter);
+	public static float[] extractFloatDataFromAmplitudeByteArray(AudioFormat format, byte[] audioBytes) {
+		// convert
+		float[] audioData = null;
+		if (format.getSampleSizeInBits() == 16) {
+			int nlengthInSamples = audioBytes.length / 2;
+			audioData = new float[nlengthInSamples];
+			if (format.isBigEndian()) {
+				for (int i = 0; i < nlengthInSamples; i++) {
+					/* First byte is MSB (high order) */
+					int MSB = audioBytes[2 * i];
+					/* Second byte is LSB (low order) */
+					int LSB = audioBytes[2 * i + 1];
+					audioData[i] = MSB << 8 | (255 & LSB);
+				}
+			}
+			else {
+				for (int i = 0; i < nlengthInSamples; i++) {
+					/* First byte is LSB (low order) */
+					int LSB = audioBytes[2 * i];
+					/* Second byte is MSB (high order) */
+					int MSB = audioBytes[2 * i + 1];
+					audioData[i] = MSB << 8 | (255 & LSB);
+				}
+			}
 		}
-
-		return result;
+		else if (format.getSampleSizeInBits() == 8) {
+			int nlengthInSamples = audioBytes.length;
+			audioData = new float[nlengthInSamples];
+			if (format.getEncoding().toString().startsWith("PCM_SIGN")) {
+				for (int i = 0; i < audioBytes.length; i++) {
+					audioData[i] = audioBytes[i];
+				}
+			}
+			else {
+				for (int i = 0; i < audioBytes.length; i++) {
+					audioData[i] = audioBytes[i] - 128;
+				}
+			}
+		}// end of if..else
+		// System.out.println("PCM Returned===============" +
+		// audioData.length);
+		return audioData;
 	}
 	
 }

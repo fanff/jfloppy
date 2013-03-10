@@ -1,4 +1,4 @@
-package wav;
+package jfloppy.audio.draft;
 
 public interface FusionSpectrum {
 	
