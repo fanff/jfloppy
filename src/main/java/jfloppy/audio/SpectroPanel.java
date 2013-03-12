@@ -1,4 +1,5 @@
 package jfloppy.audio;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Arrays;
 
@@ -9,6 +10,7 @@ public class SpectroPanel extends JPanel{
 	
 	public SpectroPanel() {
 		super();
+		this.setPreferredSize(new Dimension(300,200));
 	}
 
 	public void plotSpectrum(double [] spectrum,String name){

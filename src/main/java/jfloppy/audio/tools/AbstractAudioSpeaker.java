@@ -16,5 +16,11 @@ public abstract class AbstractAudioSpeaker implements IfaceAudioDataSpeaker {
 		listeners.add(listener);
 		
 	}
+	
+	public void forAllListenerSpeak(double [] audioData){
+		for (IfaceAudioDataListener lis : listeners) {
+			lis.listen(audioData);
+		}
+	}
 
 }

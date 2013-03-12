@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import jfloppy.audio.tools.AudioCapture;
 import jfloppy.audio.tools.AudioDataBuffer;
 import jfloppy.audio.tools.FFTTransform;
-import jfloppy.audio.tools.MeanOfTheLastN;
+import jfloppy.audio.tools.SumOfTheLastN;
 import jfloppy.audio.tools.Normalize;
 import jfloppy.audio.tools.SpectroViewer;
 
@@ -27,7 +27,7 @@ public class TestAudioDataBuffer {
 			FFTTransform fftt = new FFTTransform();
 			Normalize normalizer = new Normalize();
 			SpectroViewer viewer = new SpectroViewer("viewer"+i);
-			MeanOfTheLastN mean = new MeanOfTheLastN(i+1);
+			SumOfTheLastN mean = new SumOfTheLastN(i+1);
 			
 			
 			databuffer.registerListener(fftt);

@@ -5,12 +5,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import com.musicg.math.statistics.Sum;
 
-public class MeanOfTheLastN extends SpeakerListener {
+public class SumOfTheLastN extends SpeakerListener {
 
 	ArrayBlockingQueue<double[]> lastn = null;
 	
 	
-	public MeanOfTheLastN(int n) {
+	public SumOfTheLastN(int n) {
 		super();
 		lastn = new ArrayBlockingQueue<double[]>(n);
 	}
