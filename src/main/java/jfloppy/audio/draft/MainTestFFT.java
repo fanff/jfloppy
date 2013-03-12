@@ -47,7 +47,7 @@ public class MainTestFFT {
 		
 		for(int freqid = 0; freqid < generatedCount ;freqid+= 1){
 			int freq = freqsToGenerate[freqid];
-			double[] wave = JFloppyAudioTB.square(44000, freq, sampleSize);
+			double[] wave = JFloppyAudioTB.generateSinus(44000, freq, sampleSize);
 			
 			generated[freqid]=wave;
 			

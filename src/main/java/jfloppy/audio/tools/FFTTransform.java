@@ -14,9 +14,10 @@ public class FFTTransform extends SpeakerListener {
 		//System.out.println("fft");
 		
 		double[] magnitudes = fft.getMagnitudes(Arrays.copyOf(audioData, audioData.length));
-		for (IfaceAudioDataListener listener : listeners) {
-			listener.listen(magnitudes);
-		}
+		
+		//System.out.println(""+magnitudes[0]);
+		forAllListenerSpeak(magnitudes);
+
 	}
 
 }

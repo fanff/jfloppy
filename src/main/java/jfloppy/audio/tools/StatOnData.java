@@ -10,13 +10,14 @@ public class StatOnData extends SpeakerListener {
 	@Override
 	public void listen(double[] audioData) {
 		
+		double audioDataCount = (double)audioData.length;
 		mean.setValues(audioData);
 		double meanvalue = mean.evaluate();
 		
 		deviation.setValues(audioData);
 		double standarddeviation = deviation.evaluate();
 		
-		forAllListenerSpeak(new double[]{meanvalue,standarddeviation});
+		forAllListenerSpeak(new double[]{audioDataCount,meanvalue,standarddeviation});
 		
 	}
 

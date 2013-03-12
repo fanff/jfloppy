@@ -28,7 +28,7 @@ public class SpectroViewer implements IfaceAudioDataListener{
 	@Override
 	public void listen(double[] audioData) {
 		double maxvalue = audioData[JFloppyAudioTB.maxID(audioData)];
-		//System.out.println("viewer "+maxvalue);
+		System.out.println("viewer "+maxvalue);
 		spectroPanel.plotSpectrum(audioData, "dafuck");
 	}
 

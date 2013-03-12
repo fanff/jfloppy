@@ -9,14 +9,14 @@ import javax.sound.sampled.AudioFormat;
 public class JFloppyAudioTB {
 
 	
-	public static double[] square(int fre,int freq, int sampleSize){
+	public static double[] generateSinus(int fre,int freq, int sampleSize){
 		double[] signal = new double[sampleSize];
 		
 		
 		for(int index =0 ; index<sampleSize; index++){
 			double sec = idx2TimeSec(fre, index);
 			
-			double cos = Math.cos((2*Math.PI*freq)*sec);
+			double cos = Math.sin((2*Math.PI*freq)*sec);
 			
 			//signal[index] = new Long(Math.round(cos)).shortValue();
 			signal[index]=cos;
