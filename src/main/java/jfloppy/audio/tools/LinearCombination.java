@@ -1,6 +1,5 @@
-package jfloppy.audio.tools.panels;
+package jfloppy.audio.tools;
 
-import jfloppy.audio.tools.MultipleListenerSpeaker;
 
 public class LinearCombination extends MultipleListenerSpeaker {
 

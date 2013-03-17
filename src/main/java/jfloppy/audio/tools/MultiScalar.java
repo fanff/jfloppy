@@ -1,6 +1,5 @@
 package jfloppy.audio.tools;
 
-import jfloppy.audio.tools.panels.LinearOperation;
 
 public class MultiScalar extends LinearOperation {
 

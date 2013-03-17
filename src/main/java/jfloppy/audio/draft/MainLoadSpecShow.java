@@ -2,7 +2,7 @@ package jfloppy.audio.draft;
 
 import java.util.Arrays;
 
-import jfloppy.audio.SpectroPanel;
+import jfloppy.audio.tools.panels.SpectroPanel;
 
 
 public class MainLoadSpecShow {

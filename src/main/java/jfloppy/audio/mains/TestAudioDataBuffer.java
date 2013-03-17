@@ -8,7 +8,7 @@ import jfloppy.audio.tools.AudioDataBuffer;
 import jfloppy.audio.tools.FFTTransform;
 import jfloppy.audio.tools.SumOfTheLastN;
 import jfloppy.audio.tools.Normalize;
-import jfloppy.audio.tools.SpectroViewer;
+import jfloppy.audio.tools.panels.SpectroViewer;
 
 public class TestAudioDataBuffer {
 	ExecutorService tpe = Executors.newFixedThreadPool(20);

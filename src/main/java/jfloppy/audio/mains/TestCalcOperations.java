@@ -5,9 +5,9 @@ import javax.swing.JFrame;
 import jfloppy.audio.tools.AudioCapture;
 import jfloppy.audio.tools.IfaceAudioDataListener;
 import jfloppy.audio.tools.MultiScalar;
-import jfloppy.audio.tools.SpectroViewer;
 import jfloppy.audio.tools.StatOnData;
 import jfloppy.audio.tools.SumOfTheLastN;
+import jfloppy.audio.tools.panels.SpectroViewer;
 import jfloppy.audio.tools.panels.VectorPrinterPanel;
 
 public class TestCalcOperations {

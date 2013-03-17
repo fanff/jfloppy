@@ -3,7 +3,7 @@ package jfloppy.audio.mains;
 import jfloppy.audio.tools.AudioCapture;
 import jfloppy.audio.tools.FFTTransform;
 import jfloppy.audio.tools.Normalize;
-import jfloppy.audio.tools.SpectroViewer;
+import jfloppy.audio.tools.panels.SpectroViewer;
 
 public class CaptureAndPlotSpectro {
 

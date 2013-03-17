@@ -1,6 +1,6 @@
 package jfloppy.audio.draft;
 
-import jfloppy.audio.SpectroPanel;
+import jfloppy.audio.tools.panels.SpectroPanel;
 
 
 public class MainRecordSpecShow {

@@ -3,14 +3,15 @@ package jfloppy.audio.mains;
 import javax.swing.JFrame;
 
 import jfloppy.audio.JFloppyAudioTB;
+import jfloppy.audio.tools.ApplyMask;
 import jfloppy.audio.tools.AudioCapture;
 import jfloppy.audio.tools.FFTTransform;
 import jfloppy.audio.tools.IfaceAudioDataListener;
 import jfloppy.audio.tools.IfaceAudioDataSpeaker;
+import jfloppy.audio.tools.LinearCombination;
 import jfloppy.audio.tools.Normalize;
-import jfloppy.audio.tools.SpectroViewer;
 import jfloppy.audio.tools.StatOnData;
-import jfloppy.audio.tools.panels.LinearCombination;
+import jfloppy.audio.tools.panels.SpectroViewer;
 import jfloppy.audio.tools.panels.VectorPrinterPanel;
 
 public class TestCompareFFT {
@@ -28,7 +29,15 @@ public class TestCompareFFT {
 		acapture.registerListener(fft_capture);
 		fft_capture.registerListener(normalizedSpectro("rawMic"));
 		fft_capture.registerListener(statPrinter("raw"));
+		
+		
+		ApplyMask capture_mask = new ApplyMask();
+		capture_mask.setInvisibleMask(512);
+		for(int pos = 35 ; pos<42 ; pos++){
+			capture_mask.setBitInMask(pos, true);
+		}
 		fft_capture.registerListener(normalizer_capture);
+		normalizer_capture.registerListener(capture_mask);
 		
 		
 		FFTTransform fft_input = new FFTTransform();
@@ -40,7 +49,7 @@ public class TestCompareFFT {
 
 		
 		LinearCombination difference = new LinearCombination(0.5d, new double[]{1d,-1d});
-		difference.registerSpeaker(0, normalizer_capture);
+		difference.registerSpeaker(0, capture_mask);
 		difference.registerSpeaker(1, normalizer_input);
 		
 		
@@ -48,7 +57,7 @@ public class TestCompareFFT {
 		difference.registerListener(statPrinter("difference"));
 		
 		double[] generatedWave = JFloppyAudioTB.generateSinus(
-				44000, 880, 2048);
+				44000, 820, 2048);
 		fft_input.listen(generatedWave);
 		
 		
