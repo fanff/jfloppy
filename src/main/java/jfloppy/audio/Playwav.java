@@ -33,7 +33,7 @@ public class Playwav {
 		osc.output.connect( 0, lineOut.input, 1 );
 
 		// Set the frequency and amplitude for the sine wave.
-		osc.frequency.set( 345.0 );
+		osc.frequency.set( 880.0 );
 		osc.amplitude.set( 0. );
 
 		// We only need to start the LineOut. It will pull data from the
@@ -50,7 +50,7 @@ public class Playwav {
 			osc.amplitude.set( 1. );
 			//osc.phase.set(1.);
 			for(int i = 0 ; i< 100000000 ; i++){
-				osc.frequency.set( 330);
+				osc.frequency.set( 440);
 				// Sleep while the sound is generated in the background.
 				// Sleep for a few seconds.
 				//synth.sleepUntil( synth.getCurrentTime() + 0.01 );

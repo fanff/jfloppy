@@ -22,7 +22,7 @@ public class SpectroViewer extends JPanel implements IfaceAudioDataListener, Act
 	JButton change = new JButton("set vscale");
 	
 	JPanel buttonPanel = new JPanel();
-	JTextField vscale = new JTextField();
+	JTextField vscale = new JTextField(10);
 	public SpectroViewer(String frameName) {
 		super();
 		FrameName = frameName;
@@ -48,7 +48,7 @@ public class SpectroViewer extends JPanel implements IfaceAudioDataListener, Act
 	@Override
 	public void listen(double[] audioData) {
 		double maxvalue = audioData[JFloppyAudioTB.maxID(audioData)];
-		System.out.println("viewer "+maxvalue);
+		//System.out.println("viewer "+maxvalue);
 		spectroPanel.plotSpectrum(audioData, "dafuck");
 	}
 
