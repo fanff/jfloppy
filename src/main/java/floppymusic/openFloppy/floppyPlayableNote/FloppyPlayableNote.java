@@ -37,7 +37,7 @@ public class FloppyPlayableNote implements Serializable{
 	
 	
 	public boolean canPlay(int noteID){
-		if(noteID >= notesList.size()){
+		if(noteID >= 128 || noteID < 0 ){
 			return false;
 		}else{
 			return notesList.get(noteID);

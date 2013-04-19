@@ -14,6 +14,7 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
 
 import floppymusic.midi.MidiParser;
+import floppymusic.openFloppy.floppyPlayableNote.HardwareConfig;
 
 public class TrackBuilder {
 	public static final HashSet<String> noteName = new HashSet<String>();
@@ -85,6 +86,48 @@ public class TrackBuilder {
 		noteFreq.put("D4", 293.66d);
 		noteFreq.put("D4#", 311.13d);
 	}
+	
+	
+	
+	public static int accumulate(
+			SetOfFloppyTrack inFloppyTrack, 
+			SetOfMidiNotes midiNotes,
+			HardwareConfig config
+			){
+		
+		int notAddedFrameCount = 0; 
+		
+		for(FloppyFrame frame : midiNotes){
+    		boolean frameIsAdded = false;
+    		int priority = 0;
+    		
+    		while(!frameIsAdded && priority < inFloppyTrack.getTrackCount()){
+    			if(config.getFloppy(priority).canPlay(frame.freq) && inFloppyTrack.getTrack(priority).canSetFreqFromTo(frame.begin, frame.end, frame.freq)){
+    				//I can add the frame !!!
+    				frameIsAdded = true;
+    				inFloppyTrack.getTrack(priority).setFreqFromTo(frame.begin, frame.end, frame.freq);
+    			}else{
+    				//can not add the frame, increase priority
+    				priority++;
+    			}
+    		}
+    		
+    		if(frameIsAdded == false){
+    			System.out.println("!!! can not add note. priority is "+priority);
+    			notAddedFrameCount++;
+    		}
+    	}
+		
+		return notAddedFrameCount;
+		
+	}
+	/***
+	 * try to insert the set of midi notes inside the given floppytrack.
+	 * 
+	 * @param inFloppyTrack
+	 * @param midiNotes
+	 * @return
+	 */
 	public static SetOfFloppyTrack accumulate(
 			SetOfFloppyTrack inFloppyTrack, 
 			SetOfMidiNotes midiNotes
@@ -112,6 +155,14 @@ public class TrackBuilder {
 		return inFloppyTrack;
 	}
 	
+	/**
+	 * destination track is using the source track
+	 * @param dest
+	 * @param source
+	 * @param idInSource
+	 * @param idOutDest
+	 * @return
+	 */
 	public static SetOfFloppyTrack map(
 			SetOfFloppyTrack dest,
 			SetOfFloppyTrack source,
@@ -125,7 +176,14 @@ public class TrackBuilder {
 	
 	
 	
-	
+	/**
+	 * Collect usefull notes and
+	 * put the in the track set using accumulate
+	 * @param inFloppyTrack
+	 * @param midiSequence
+	 * @param channel
+	 * @return
+	 */
 	public static SetOfFloppyTrack buildOn(
 			SetOfFloppyTrack inFloppyTrack, 
 			Sequence midiSequence, 
@@ -136,6 +194,12 @@ public class TrackBuilder {
 		return accumulate(inFloppyTrack, notesFromMidi);
 	}
 	
+	/***
+	 * Extract notes from a Sequence on the given channel
+	 * @param sequence
+	 * @param usedChannel
+	 * @return
+	 */
 	public static  SetOfMidiNotes  collectUsefullNote(
 			Sequence sequence,
 			int usedChannel){

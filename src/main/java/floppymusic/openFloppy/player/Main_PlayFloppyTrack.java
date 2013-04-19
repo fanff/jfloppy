@@ -99,12 +99,12 @@ public class Main_PlayFloppyTrack implements ActionListener{
 			while(timer <= longestTrackDuration && !stopplaying){
 
 				fmp.playThis(0, allfloppytracks.getFreqForThisTrack(0,(int) timer) ) ;
+				fmp.playThis(1, allfloppytracks.getFreqForThisTrack(1,(int) timer) ) ;
 				fmp.playThis(2, allfloppytracks.getFreqForThisTrack(2,(int) timer) ) ;
 				fmp.playThis(3, allfloppytracks.getFreqForThisTrack(3,(int) timer) ) ;
 				fmp.playThis(4, allfloppytracks.getFreqForThisTrack(4,(int) timer) ) ;
-
 				fmp.playThis(5, allfloppytracks.getFreqForThisTrack(5,(int) timer) ) ;
-				fmp.playThis(1, allfloppytracks.getFreqForThisTrack(1,(int) timer) ) ;
+
 
 				//        	fmp.playThis(0, allfloppytracks.getFreqForThisTrack(0,(int) timer) ) ;
 				//        	fmp.playThis(1, allfloppytracks.getFreqForThisTrack(1,(int) timer) ) ;
@@ -138,7 +138,7 @@ public class Main_PlayFloppyTrack implements ActionListener{
 	public static void main(String[] args) {
 
 		Main_PlayFloppyTrack mft = new Main_PlayFloppyTrack();
-		//mft.doProcess();
+		mft.doProcess();
 	}
 	
 	protected boolean isPlaying = false;
