@@ -1,11 +1,15 @@
 package floppymusic.midi.parsing.gost;
 
 import java.awt.Dimension;
+import java.util.HashMap;
 
 import javax.sound.midi.Sequence;
 import javax.swing.JFrame;
 
+import panel.MultipleXYTrace;
+
 import floppymusic.midi.MidiParser;
+import floppymusic.openFloppy.floppyPlayableNote.HardwareConfig;
 import floppymusic.openFloppy.panel.MultipleFloppyTrackPanel;
 import floppymusic.openFloppy.utils.SetOfFloppyTrack;
 import floppymusic.openFloppy.utils.SetOfMidiNotes;
@@ -17,56 +21,85 @@ public class Ghost1 {
 
 		String destinationFileName = "fptsbase/work.fpts";
 		//SPEED FACTOR. THE GREATER -> the slower
-		double timeFactorToUse = 3D;
+		double timeFactorToUse = 3.1D;
 
 		//creating the six track
 		int trackCount = 6;
-		SetOfFloppyTrack allfloppytracks = new SetOfFloppyTrack(trackCount);
 
-		MidiParser parser = new MidiParser();
 
 		//open sequence
+		MidiParser parser = new MidiParser();
 		Sequence sequence = parser.openFile(midiFileName);
-
-		parser.printTrackAndChannel(sequence);
-		//parser.printAllFile(s);
-		//parser.printUsefullNotes(s, 1, 0);
-
-		int generalShift = -2;
-		SetOfMidiNotes guitar = TrackBuilder.collectUsefullNote(sequence, 2);
-		guitar.applyShifting(generalShift);
-		TrackBuilder.accumulate(allfloppytracks, guitar);
-
-		SetOfMidiNotes sax2 = TrackBuilder.collectUsefullNote(sequence, 1);
-		sax2.applyShifting(generalShift);
-		TrackBuilder.accumulate(allfloppytracks, sax2);
 		
-		SetOfMidiNotes track0 = TrackBuilder.collectUsefullNote(sequence, 0);
-		track0.applyShifting(generalShift);
-		TrackBuilder.accumulate(allfloppytracks, track0);
+		//open floppy playable Notes
+		HardwareConfig config = new HardwareConfig();
 		
 		
-
+		int startShifting = -24;
+		int stopShifting = +24;
 		
-
-		MultipleFloppyTrackPanel mftp = new MultipleFloppyTrackPanel();
-		mftp.setTracks(allfloppytracks);
-
+		HashMap<Integer, Integer> remainingNoteByShifting = new HashMap<Integer, Integer>();
+		
+		for(int shifting = startShifting ; shifting<= stopShifting ; shifting++){
+			SetOfFloppyTrack allTrack = new SetOfFloppyTrack(trackCount);
+			int remainingNotes = extractingFunction(shifting, sequence, config,allTrack);
+			
+			remainingNoteByShifting.put(shifting, remainingNotes);
+		}
 
 		JFrame frame = new JFrame();
-		frame.add(mftp);
-		frame.setPreferredSize(new Dimension(500, 300));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
+		MultipleXYTrace mxyt = new MultipleXYTrace();
+		
+		
+		frame.add(mxyt);
+		
 		frame.setVisible(true);
+		
+		for(int shifting = startShifting ; shifting<= stopShifting ; shifting++){
+			mxyt.addValue(shifting, remainingNoteByShifting.get(shifting), "opt", 0);
+		}
+		
+		SetOfFloppyTrack allTrack = new SetOfFloppyTrack(trackCount);
+		int generalShift = -5;
+		int remainingNotes = extractingFunction(generalShift, sequence, config,allTrack);
+		MultipleFloppyTrackPanel mftp = new MultipleFloppyTrackPanel();
+		mftp.setTracks(allTrack);
 
-		allfloppytracks.setDefaultTimeFactor(timeFactorToUse);
-		allfloppytracks.saveToFile(destinationFileName);
 
+		JFrame frame2 = new JFrame();
+		frame2.add(mftp);
+		frame2.setPreferredSize(new Dimension(500, 300));
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.pack();
+		frame2.setVisible(true);
 
-		System.out.println("SAVED in "+destinationFileName);
+		allTrack.setDefaultTimeFactor(timeFactorToUse);
+		allTrack.saveToFile(destinationFileName);
+	}
+	public static int extractingFunction(int generalShift, Sequence sequence, HardwareConfig config,SetOfFloppyTrack allFloppyTracks){
+		
+		
+		
+		
+		
+		
+		SetOfMidiNotes sax = TrackBuilder.collectUsefullNote(sequence, 2);
+		sax.applyShifting(generalShift);
+		
+		int saxnotAdded = TrackBuilder.accumulate(allFloppyTracks, sax,config);
+		
+		SetOfMidiNotes sax2 = TrackBuilder.collectUsefullNote(sequence, 1);
+		sax2.applyShifting(generalShift);
+		//int sax2notAdded = TrackBuilder.accumulate(allFloppyTracks, sax2 ,config);
+		
+		SetOfMidiNotes guitar = TrackBuilder.collectUsefullNote(sequence, 0);
+		guitar.applyShifting(generalShift);
+		////int guitarnotAdded = TrackBuilder.accumulate(allFloppyTracks, guitar,config);
 
-
+		
+		
+		return saxnotAdded ;
+		
 	}
 
 }

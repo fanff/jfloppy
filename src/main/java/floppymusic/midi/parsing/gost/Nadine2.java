@@ -1,5 +1,6 @@
 package floppymusic.midi.parsing.gost;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 
 import javax.sound.midi.Sequence;
@@ -12,6 +13,7 @@ import jfloppy.audio.tools.panels.SpectroPanel;
 import floppymusic.midi.MidiParser;
 import floppymusic.openFloppy.floppyPlayableNote.FloppyPlayableNote;
 import floppymusic.openFloppy.floppyPlayableNote.HardwareConfig;
+import floppymusic.openFloppy.panel.MultipleFloppyTrackPanel;
 import floppymusic.openFloppy.utils.SetOfFloppyTrack;
 import floppymusic.openFloppy.utils.SetOfMidiNotes;
 import floppymusic.openFloppy.utils.TrackBuilder;
@@ -63,6 +65,23 @@ public class Nadine2 {
 		for(int shifting = startShifting ; shifting<= stopShifting ; shifting++){
 			mxyt.addValue(shifting, remainingNoteByShifting.get(shifting), "opt", 0);
 		}
+		
+		SetOfFloppyTrack allTrack = new SetOfFloppyTrack(trackCount);
+		int generalShift = -2;
+		int remainingNotes = extractingFunction(generalShift, sequence, config,allTrack);
+		MultipleFloppyTrackPanel mftp = new MultipleFloppyTrackPanel();
+		mftp.setTracks(allTrack);
+
+
+		JFrame frame2 = new JFrame();
+		frame2.add(mftp);
+		frame2.setPreferredSize(new Dimension(500, 300));
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.pack();
+		frame2.setVisible(true);
+
+		allTrack.setDefaultTimeFactor(timeFactorToUse);
+		allTrack.saveToFile(destinationFileName);
 	}
 	
 	public static int extractingFunction(int generalShift, Sequence sequence, HardwareConfig config,SetOfFloppyTrack allFloppyTracks){
@@ -84,7 +103,7 @@ public class Nadine2 {
 		int pianonotAdded = TrackBuilder.accumulate(allFloppyTracks, piano,config);
 		
 		
-		return saxnotAdded + sax2notAdded + guitarnotAdded + pianonotAdded;
+		return saxnotAdded + sax2notAdded + guitarnotAdded + pianonotAdded ;
 		
 	}
 

@@ -35,12 +35,11 @@ public class Nadine {
 		//parser.printAllFile(s);
 		//parser.printUsefullNotes(s, 1, 0);
 
-		int generalShift = -2;
+		int generalShift = -17;
 		SetOfMidiNotes sax = TrackBuilder.collectUsefullNote(sequence, 0);
 		sax.applyShifting(generalShift);
-		
-		
 		TrackBuilder.accumulate(allfloppytracks, sax);
+		
 		SetOfMidiNotes sax2 = TrackBuilder.collectUsefullNote(sequence, 1);
 		sax2.applyShifting(generalShift);
 		TrackBuilder.accumulate(allfloppytracks, sax2);
@@ -53,10 +52,6 @@ public class Nadine {
 		SetOfMidiNotes piano = TrackBuilder.collectUsefullNote(sequence, 3);
 		piano.applyShifting(generalShift);
 		TrackBuilder.accumulate(allfloppytracks, piano);
-		
-		SetOfMidiNotes bass = TrackBuilder.collectUsefullNote(sequence, 4);
-		bass.applyShifting(+11);
-		///TrackBuilder.accumulate(allfloppytracks, bass);
 		
 
 		MultipleFloppyTrackPanel mftp = new MultipleFloppyTrackPanel();

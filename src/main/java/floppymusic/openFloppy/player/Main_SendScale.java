@@ -69,7 +69,7 @@ public class Main_SendScale implements ActionListener{
 			System.out.println("ENDPROGRAM" );
 
 			panel.remove(topLabel);
-			filenameforFloppyDef.setText("floppy"+floppyID+".fpn");
+			filenameforFloppyDef.setText("fpnfiles/floppy"+floppyID+".fpn");
 			panel.add(filenameforFloppyDef,BorderLayout.NORTH);
 
 			frame.pack();

@@ -238,7 +238,7 @@ public class TrackBuilder {
 							startedNote.add(new FloppyFrame(tick, 0, key));
 						}
 
-					}else if(sm.getCommand() == MidiParser.NOTE_OFF){
+					}else if(sm.getCommand() == MidiParser.NOTE_OFF ){
 						int key = sm.getData1();
 						int octave = (key / 12)-1;
 						int note = key % 12;

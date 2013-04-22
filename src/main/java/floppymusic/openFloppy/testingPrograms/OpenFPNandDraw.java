@@ -13,8 +13,8 @@ public class OpenFPNandDraw {
 		JFrame frame = new JFrame();
 		PlayableNotePanel pnp = new PlayableNotePanel();
 
-		for(int i = 3 ; i<= 5;i++){
-			String fileName = "floppy"+i;
+		for(int i = 0 ; i<= 5;i++){
+			String fileName = "fpnfiles/floppy"+i;
 			fileName+= ".fpn";
 			
 			
